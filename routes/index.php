@@ -5,19 +5,30 @@ use App\Controllers\ForgotController;
 use App\Controllers\TweetController;
 use App\Controllers\UsuarioController;
 use App\Middlewares\JwtDateTimeMiddleware;
+use App\Middlewares\CorsMiddleware;
+use src\CorsAction;
 
 use function src\jwtAuth;
 use function src\slimConfiguration;
 
 $app = new \Slim\App(slimConfiguration());
+$app->options('/{name:.+}', CorsAction::class);
 
 
-$app->get('/teste', function($request, $response) { echo 'teste'; })
-    ->add(new JwtDateTimeMiddleware())
-    ->add(jwtAuth());
+
+$app->group('', function() use ($app) {
+
+//Login
+$app->post('/login', AuthController::class . ':login');
+
+//Criar uma conta
+$app->post('/usuario', UsuarioController::class . ':insertUsuario');
+
+$app->get('/teste', function($request, $response) { echo 'teste'; });
 
 
-$app->post('/usuario', UsuarioController::class . ':insertUsuario'); //Criar uma conta
+})->add(new CorsMiddleware());
+
 
 $app->group('', function() use ($app) {
     
@@ -45,8 +56,7 @@ $app->put('/update-password', ForgotController::class . ':setNewPass');
 //Refresh token
 $app->post('/refresh_token',AuthController::class . ':refreshToken');
 
-//Login
-$app->post('/login',AuthController::class . ':login');
+
 
 $app->run();
 

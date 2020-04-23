@@ -27,6 +27,10 @@ class ComposerStaticInit6c640cae9352ca46737198857bae7bed
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Container\\' => 14,
         ),
+        'N' => 
+        array (
+            'Neomerx\\Cors\\' => 13,
+        ),
         'F' => 
         array (
             'Firebase\\JWT\\' => 13,
@@ -42,7 +46,8 @@ class ComposerStaticInit6c640cae9352ca46737198857bae7bed
         'Tuupola\\Middleware\\' => 
         array (
             0 => __DIR__ . '/..' . '/tuupola/callable-handler/src',
-            1 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
+            1 => __DIR__ . '/..' . '/tuupola/cors-middleware/src',
+            2 => __DIR__ . '/..' . '/tuupola/slim-jwt-auth/src',
         ),
         'Tuupola\\Http\\Factory\\' => 
         array (
@@ -69,6 +74,10 @@ class ComposerStaticInit6c640cae9352ca46737198857bae7bed
         'Psr\\Container\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/container/src',
+        ),
+        'Neomerx\\Cors\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/neomerx/cors-psr7/src',
         ),
         'Firebase\\JWT\\' => 
         array (
